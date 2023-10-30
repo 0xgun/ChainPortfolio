@@ -16,7 +16,4 @@ Chain Portfolio is a user-friendly cryptocurrency portfolio viewer. It allows yo
 
 ## Screenshots
 
-![](/Screenshots/img1.png)
-![](/Screenshots/img2.png)
-![](/Screenshots/img3.png)
-![](/Screenshots/img4.png)
+![Alt text](Screenshots/img1.png)
