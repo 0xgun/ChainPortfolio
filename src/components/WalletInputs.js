@@ -10,7 +10,7 @@ function WalletInputs({ chain, setChain, wallet, setWallet }) {
       <div className="header">
         <div className="title">
           <img src={logo} className="logo" alt="logo" />
-          <h1>ChainBase</h1>
+          <h1>ChainPortfolio</h1>
         </div>
 
         <div className="walletInputs">

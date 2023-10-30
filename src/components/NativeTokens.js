@@ -20,20 +20,31 @@ function NativeTokens({
         address: wallet,
         to_block: 'latest',
       },
-      headers: { accept: 'application/json', 'x-api-key': 'demo' },
+      headers: {
+        accept: 'application/json',
+        'x-api-key': '2XAceZuqsW8jhOJlWYhfwb4asBQ',
+      },
     };
-
     axios
       .request(options)
       .then(function (response) {
-        console.log(parseInt(response.data.data, 16));
-        setNativeBalance(parseInt(response.data.data, 16));
-        setNativeValue(parseInt(response.data.data, 16));
+        if (response.data && response.data) {
+          setNativeBalance(parseInt(response.data.data, 16));
+
+          setNativeValue(
+            (
+              (Number(parseInt(response.data.data, 16)) / 1e18) *
+              Number(1813.575001)
+            ).toFixed(2)
+          );
+        }
       })
       .catch(function (error) {
         console.error(error);
       });
+    console.log(nativeBalance);
   }
+
   return (
     <>
       <div className="tabHeading">

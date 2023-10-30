@@ -11,23 +11,28 @@ function Tokens({ wallet, chain, tokens, setTokens }) {
       params: {
         chain_id: chain,
         address: wallet,
-        limit: '20',
+        limit: '100',
         page: '1',
       },
-      headers: { accept: 'application/json', 'x-api-key': 'demo' },
+      headers: {
+        accept: 'application/json',
+        'x-api-key': '2XAceZuqsW8jhOJlWYhfwb4asBQ',
+      },
     };
 
     axios
       .request(options)
       .then(function (response) {
         setTokens(response.data.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
       });
   }
-
+  function formatNumber(number) {
+    const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+    return formatter.format(number);
+  }
   return (
     <>
       <div className="tabHeading">
@@ -41,7 +46,11 @@ function Tokens({ wallet, chain, tokens, setTokens }) {
           noPagination={true}
           style={{ width: '900px' }}
           columnsConfig="300px 300px 250px"
-          data={tokens.map((e) => [e.symbol, e.bal, `$${e.val}`])}
+          data={tokens.map((e) => [
+            e.symbol,
+            `${formatNumber(parseInt(e.balance, 16))}`,
+            `$${formatNumber(e.balance * e.current_usd_price)}`,
+          ])}
           header={[
             <span key="currency">Currency</span>,
             <span key="balance">Balance</span>,

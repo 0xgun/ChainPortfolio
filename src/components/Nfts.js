@@ -2,26 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '@web3uikit/core';
 import { Reload } from '@web3uikit/icons';
 
-function Nfts({ wallet, chain, nfts, setNfts, filteredNfts, setFilteredNfts }) {
+function Nfts({ wallet, chain }) {
+  const [nftData, setNftData] = useState(null);
   useEffect(() => {
     async function getTopTrendingNFTs() {
       const options = {
         method: 'GET',
-        headers: { accept: 'application/json', 'x-api-key': 'demo' },
+        headers: {
+          accept: 'application/json',
+          'x-api-key': '2XAceZuqsW8jhOJlWYhfwb4asBQ',
+        },
       };
       const res = await fetch(
-        'https://api.chainbase.online/v1/account/nfts?chain_id=1&address=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045&page=1&limit=100',
+        `https://api.chainbase.online/v1/account/nfts?chain_id=${chain}&address=${wallet}&page=1&limit=100`,
         options
       )
         .then((response) => response.json())
         .catch((err) => console.error(err));
-      console.log(res);
-      setNfts(res);
+      setNftData(res.data);
     }
     getTopTrendingNFTs();
-  }, []);
-
-  console.log(nfts);
+  });
   return (
     <div>
       <div className="tabHeading">
@@ -43,18 +44,21 @@ function Nfts({ wallet, chain, nfts, setNfts, filteredNfts, setFilteredNfts }) {
           style={{}}
         />
       </div>
-      <div className="nftList">
-        {nfts?.data?.length
-          ? nfts?.data?.map((e) => (
-              <div className="nftInfo">
-                {e.image_uri && <img src={e.image_uri} width={200} />}
-                {console.log(e.image_uri)}
-                <div>Name: {e.name} </div>
-              </div>
-            ))
-          : null}
-      </div>
+
+      {nftData && nftData.length > 0 ? (
+        <div className="nftList">
+          {nftData.map((e) => (
+            <div className="nftInfo">
+              {e.image_uri && <img src={e.image_uri} width={200} alt="img" />}
+              <div>Name: {e.name} </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
+
 export default Nfts;
