@@ -13,3 +13,7 @@ Chain Portfolio is a user-friendly cryptocurrency portfolio viewer. It allows yo
 - **Transfer History**: Keep track of your transaction history.
 - **NFTs**: Manage and filter your NFT collection with ease.
 - **Multi-Chain Support**: Chain Portfolio offers a user-friendly cryptocurrency portfolio viewer that supports various Chain Network IDs, including Ethereum (1), Polygon (137), BSC - Binance Smart Chain (56), Avalanche (43114), Arbitrum One (42161), Optimism (10), Base (8453), and zkSync (324).
+
+## Screenshots
+
+![enter image description here](https://github.com/0xgun/ChainPortfolio/blob/master/Screenshots/Screenshot%202023-10-30%20215154.png?raw=true)
